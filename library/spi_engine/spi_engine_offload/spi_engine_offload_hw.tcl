@@ -6,6 +6,7 @@ source ../../scripts/adi_ip_intel.tcl
 ad_ip_create spi_engine_offload {SPI Engine Offload} p_elaboration
 ad_ip_files spi_engine_offload [list\
   $ad_hdl_dir/library/util_cdc/sync_bits.v \
+  spi_engine_offload_constr.sdc \
   spi_engine_offload.v]
 
 # parameters
@@ -93,7 +94,7 @@ proc p_elaboration {} {
   set_interface_property sync associatedReset if_spi_resetn
 
   ## Offload SDI data interface
-  
+
   add_interface offload_sdi axi4stream start
   add_interface_port offload_sdi offload_sdi_valid tvalid  output  1
   add_interface_port offload_sdi offload_sdi_ready tready  input   1
