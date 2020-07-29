@@ -61,7 +61,7 @@ module ad_ip_jesd204_tpl_dac_channel #(
   input [15:0] dac_dds_incr_1,
 
   input [15:0] dac_pat_data_0,
-  input [15:0] dac_pat_data_1, 
+  input [15:0] dac_pat_data_1,
 
   input        dac_iqcor_enb,
   input [15:0] dac_iqcor_coeff_1,
@@ -162,5 +162,15 @@ module ad_ip_jesd204_tpl_dac_channel #(
     .tone_1_freq_word (dac_dds_incr_0),
     .tone_2_freq_word (dac_dds_incr_1),
     .dac_dds_data (dac_dds_data_s));
+
+    my_ila i_ila (
+    .clk(clk),
+    .probe0(dac_dds_format),
+    .probe1(dac_data_sync),
+    .probe2(dac_dds_data_s),
+    .probe3(dac_dds_init_0),
+    .probe4(dac_dds_init_1),
+    .probe5(dac_dds_incr_0),
+    .probe6(dac_dds_incr_1));
 
 endmodule
